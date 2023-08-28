@@ -2,10 +2,16 @@ self.addEventListener('push', async e => {
     console.log('New push message!');
 
     self.registration.showNotification('Title', {
-        body: e.stopImmediatePropagation.text(),
+        body: e.data.text(),
         icon: '/images/icon.png',
     });
 });
+
+self.addEventListener('notificationclick', e => {
+    const data = e.data;
+    const tag = e.tag;
+    const action = e.action;
+})
 
 self.addEventListener('sync', event => {
     switch (event.tag) {
